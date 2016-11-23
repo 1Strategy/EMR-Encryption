@@ -35,82 +35,101 @@ python show_s3_bucket_encryption.py
 
 ```
 {
-	'status': 'success',
-	'roles': {
-		'PowerUser': {
-			'arn:aws:s3:::1strategy-logs/*': {
-				's3:GetObject': {
-					'decision': 'allowed',
-					'statements': ['role_PowerUser_oneClick_PowerUser_1457471620720 - (3:17)-(8:6)']
-				},
-				's3:PutObject': {
-					'decision': 'allowed',
-					'statements': ['role_PowerUser_oneClick_PowerUser_1457471620720 - (3:17)-(8:6)']
-				}
-			}
-		},
-		'EMR_EC2_DefaultRole': {
-			'arn:aws:s3:::1strategy-logs/*': {
-				's3:GetObject': {
-					'decision': 'allowed',
-					'statements': ['AmazonElasticMapReduceforEC2Role - (3:19)-(30:6)']
-				},
-				's3:PutObject': {
-					'decision': 'allowed',
-					'statements': ['AmazonElasticMapReduceforEC2Role - (3:19)-(30:6)']
-				}
-			}
-		},
-		'EMR_DefaultRole': {
-			'arn:aws:s3:::1strategy-logs/*': {
-				's3:GetObject': {
-					'decision': 'allowed',
-					'statements': ['AmazonElasticMapReduceRole - (3:19)-(61:6)']
-				}
-			}
-		},
-		'WebServer': {
-			'arn:aws:s3:::1strategy-logs/*': {
-				's3:GetObject': {
-					'decision': 'allowed',
-					'statements': ['AmazonS3FullAccess - (3:17)-(8:6)']
-				},
-				's3:PutObject': {
-					'decision': 'allowed',
-					'statements': ['AmazonS3FullAccess - (3:17)-(8:6)']
-				}
-			}
-		}
-	},
-	'report_generated': '2016-06-09 17:29:22',
-	'users': {
-		'Jordan': {
-			'arn:aws:s3:::1strategy-logs/*': {
-				's3:GetObject': {
-					'decision': 'allowed',
-					'statements': ['AdministratorAccess - (3:17)-(8:6)']
-				},
-				's3:PutObject': {
-					'decision': 'allowed',
-					'statements': ['AdministratorAccess - (3:17)-(8:6)']
-				}
-			}
-		}
-	},
-	'groups': {
-		'Administrators': {
-			'arn:aws:s3:::1strategy-logs/*': {
-				's3:GetObject': {
-					'decision': 'allowed',
-					'statements': ['AdministratorAccess - (3:17)-(8:6)']
-				},
-				's3:PutObject': {
-					'decision': 'allowed',
-					'statements': ['AdministratorAccess - (3:17)-(8:6)']
-				}
-			}
-		}
-	}
+    "groups": {}, 
+    "report_generated": "2016-11-23 15:04:59", 
+    "roles": {
+        "EMR_DefaultRole": {
+            "arn:aws:s3:::prd-datalake-demo/*": {
+                "s3:GetObject": {
+                    "decision": "allowed", 
+                    "statements": [
+                        "AmazonElasticMapReduceRole - (3:19)-(69:6)"
+                    ]
+                }
+            }
+        }, 
+        "EMR_EC2_DefaultRole": {
+            "arn:aws:s3:::prd-datalake-demo/*": {
+                "s3:DeleteObject": {
+                    "decision": "allowed", 
+                    "statements": [
+                        "AmazonElasticMapReduceforEC2Role - (3:19)-(30:6)"
+                    ]
+                }, 
+                "s3:GetObject": {
+                    "decision": "allowed", 
+                    "statements": [
+                        "AmazonElasticMapReduceforEC2Role - (3:19)-(30:6)"
+                    ]
+                }, 
+                "s3:PutObject": {
+                    "decision": "allowed", 
+                    "statements": [
+                        "AmazonElasticMapReduceforEC2Role - (3:19)-(30:6)"
+                    ]
+                }
+            }
+        }
+    }, 
+    "status": "success", 
+    "users": {
+        "EMR-Encryption-Demo-Denied-User": {}, 
+        "EMR-Encryption-Demo-Dev-User": {
+            "arn:aws:s3:::prd-datalake-demo/*": {
+                "s3:DeleteObject": {
+                    "decision": "allowed", 
+                    "statements": [
+                        "EMR-Encryption-Demo-Dev-Policy - (3:19)-(12:10)"
+                    ]
+                }, 
+                "s3:GetObject": {
+                    "decision": "allowed", 
+                    "statements": [
+                        "EMR-Encryption-Demo-Dev-Policy - (3:19)-(12:10)"
+                    ]
+                }, 
+                "s3:PutObject": {
+                    "decision": "allowed", 
+                    "statements": [
+                        "EMR-Encryption-Demo-Dev-Policy - (3:19)-(12:10)"
+                    ]
+                }
+            }
+        }, 
+        "EMR-Encryption-Demo-List-User": {}, 
+        "EMR-Encryption-Demo-Load-User": {
+            "arn:aws:s3:::prd-datalake-demo/*": {
+                "s3:PutObject": {
+                    "decision": "allowed", 
+                    "statements": [
+                        "EMR-Encryption-Demo-Load-Policy - (3:19)-(13:10)"
+                    ]
+                }
+            }
+        }, 
+        "admin": {
+            "arn:aws:s3:::prd-datalake-demo/*": {
+                "s3:DeleteObject": {
+                    "decision": "allowed", 
+                    "statements": [
+                        "AdministratorAccess - (3:17)-(8:6)"
+                    ]
+                }, 
+                "s3:GetObject": {
+                    "decision": "allowed", 
+                    "statements": [
+                        "AdministratorAccess - (3:17)-(8:6)"
+                    ]
+                }, 
+                "s3:PutObject": {
+                    "decision": "allowed", 
+                    "statements": [
+                        "AdministratorAccess - (3:17)-(8:6)"
+                    ]
+                }
+            }
+        }
+    }
 }
-```
 
+```
