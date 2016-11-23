@@ -7,43 +7,7 @@ This project will enumerate all the IAM Users, Groups, and Roles in an account a
 - AWS Profile specified has necessary permissions to check IAM entities
 - Running in Mac OSX
 
-## Installation and Use
-
-**NOTE: These instructions assume that a Mac is being used. This project has not been tested on Linux/Windows yet.**
-
-### pip
-This project is developed using Python in a VirtualEnv environment. To run this project do the following:
-- Verify pip is installed on your system (command used to check provided below)
-```
-pip --version
-```
-
-### virtualenv
-virtualenv is a way to isolate "Python environments" to avoid possible dependency conflicts. This project requires the boto3 and termcolor libraries. This requirement can be satisfied in one of two ways: global library installation or virtualenv-based installation.
-
-#### Global Installation
-
-To install the dependencies globally, run the following commands:
-
-```
-sudo pip install boto3 termcolor
-```
-
-#### Virtualenv Installation
-
-In the root directory of this project (the directory containing this README and src/ directory), run the following:
-```
-virtualenv venvpy27
-source venvpy27/bin/activate
-pip install -r requirements.txt
-```
-
-To "deactivate" the virtual python environment (at the end of using the script), either close the terminal window or run the following:
-```
-deactivate
-```
-
-### main.py
+### show_s3_bucket_encryption.py
 
 At the top of the file, there are three variables that need to be set.
 
@@ -64,7 +28,7 @@ s3_permissions_to_test=["s3:GetObject","s3:PutObject","s3:DeleteObject"]
 
 Run the script by executing the following command from the project root directory:
 ```
-python src/main.py
+python show_s3_bucket_encryption.py
 ```
 
 ## Example Output
@@ -150,7 +114,3 @@ python src/main.py
 }
 ```
 
-## Future Enhancements
-- Accepting command-line arguments
-- Testing/Support for Windows
-- Validation on parameters
