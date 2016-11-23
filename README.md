@@ -7,7 +7,7 @@ This project will enumerate all the IAM Users, Groups, and Roles in an account a
 - AWS Profile specified has necessary permissions to check IAM entities
 - Running in Mac OSX
 
-### show_s3_bucket_encryption.py
+### show_s3_user_encryption.py
 
 At the top of the file, there are three variables that need to be set.
 
