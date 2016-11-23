@@ -15,7 +15,7 @@ At the top of the file, there are three variables that need to be set.
     - This variables is the ARN (or wildcarded ARN) that permissions will be tested against. 
     - Examples:
 ```
-target_bucket_arn="arn:aws:s3:::1strategy-logs/*" # This would test for permissions within the 1strategy-logs bucket
+target_bucket_arn="arn:aws:s3:::prd-datalake-demo/*" # This would test for permissions within the prd-datalake-demo bucket
 ```
 - aws_profile_name
     - This variable tells the script which AWS Profile (in the AWS credentials file) should be used. 
