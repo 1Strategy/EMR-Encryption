@@ -1,4 +1,0 @@
-- name: Create bucket for EMR config
-  s3_bucket:
-      name: "{{ s3_bucket_name }}"
-      state: present
