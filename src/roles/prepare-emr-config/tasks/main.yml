@@ -1,0 +1,39 @@
+- name: Create tmp directory
+  file: path="{{ playbook_dir }}/tmp/conf" state=directory
+
+- name: Generate ssl-client.xml
+  template:
+    src: "{{ playbook_dir }}/roles/prepare-emr-config/templates/ssl-client.xml.j2"
+    dest: "{{ playbook_dir }}/tmp/conf/ssl-client.xml"
+    force: yes
+
+- name: Generate ssl-server.xml
+  template:
+    src: "{{ playbook_dir }}/roles/prepare-emr-config/templates/ssl-server.xml.j2"
+    dest: "{{ playbook_dir }}/tmp/conf/ssl-server.xml"
+    force: yes
+
+- name: Generate create-keystore.sh
+  template:
+    src: "{{ playbook_dir }}/roles/prepare-emr-config/templates/create-keystore.sh.j2"
+    dest: "{{ playbook_dir }}/tmp/create-keystore.sh"
+    mode: "u+x"
+
+- name: Copy shell scripts
+  copy:
+    src: "{{ playbook_dir }}/roles/prepare-emr-config/files/"
+    dest: "{{ playbook_dir }}/tmp"
+    mode: "u+x"
+
+- name: Create Keystore
+  shell: "{{ playbook_dir }}/tmp/create-keystore.sh"
+  args:
+    chdir: "{{ playbook_dir }}/tmp/"
+
+- name: Upload Artifacts to S3
+  shell: "{{ playbook_dir }}/tmp/upload-artifacts.sh s3://{{ s3_bucket_name }}/emr/encrypted-config/"
+  args:
+    chdir: "{{ playbook_dir }}/tmp/"
+
+- name: Remove tmp directory
+  file: path="{{ playbook_dir }}/tmp" state=absent

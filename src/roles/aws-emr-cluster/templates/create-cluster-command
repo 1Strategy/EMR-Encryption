@@ -1,0 +1,15 @@
+aws emr create-cluster \
+--name {{ emr_cluster_name }} \
+--release-label emr-4.2.0 \
+--enable-debugging \
+--instance-groups \
+  InstanceGroupType=MASTER,InstanceType={{ emr_master_node_instance_type }},InstanceCount={{ emr_master_instance_count }}{{ bid_price_string }} \
+  InstanceGroupType=CORE,InstanceType={{ emr_slave_node_instance_type }},InstanceCount={{ emr_slave_instance_count }}{{ bid_price_string }} \
+--configurations file://{{ playbook_dir }}/tmp/configurations.json \
+--applications Name=Hadoop Name=Spark \
+--log-uri s3://{{ s3_bucket_name }}/logs \
+--ec2-attributes KeyName={{ emr_ec2_key_pair }},InstanceProfile={{ emr_instance_profile }},SubnetId={{ emr_subnet_id }} \
+--service-role {{ emr_service_role }} \
+--bootstrap-actions \
+    Path=s3://{{ s3_bucket_name }}/emr/encrypted-config/volume-encryption.sh,Name=VolumeEncryption,Args=[-c,AES_256,-k,{{ emr_kms_key_arn }}] \
+    Path=s3://{{ s3_bucket_name }}/emr/encrypted-config/distribute-keystore.sh,Name=DistributeKeystore,Args=s3://{{ s3_bucket_name }}/emr/encrypted-config

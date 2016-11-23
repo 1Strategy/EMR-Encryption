@@ -1,0 +1,36 @@
+# AWS General
+aws_region: us-west-2
+aws_boto_profile:
+aws_account_id: # The AWS Account Identifier
+
+# KMS
+kms_create_key: False # True/False
+
+# KMS - only required if creating a new key
+kms_iam_user_name: # the name of the IAM user to be included as an administrator of the new KMS key
+kms_key_alias: # the desired alias for the key (ex. alias/{kms_key_alias})
+kms_key_description: # a description to include on the key
+
+# S3
+s3_create_bucket: False
+s3_bucket_name: # the bucket to store encryption configuration files
+
+# EMR
+emr_keystore_password:  # minimum 6 characters
+emr_truststore_password: # minimum 6 characters
+emr_kms_key_arn: # the full ARN of the key to be used
+emr_kms_key_alias_arn: # the full ARN of the alias of the key to be used
+emr_cluster_name: # the desired name of the EMR cluster
+emr_instance_profile: # the name of the Instance Profile to be used for each EC2 instance in the cluster
+emr_service_role: # name of the Service role that EMR will use
+emr_ec2_key_pair: # an EC2 Key Pair to be used on each instance in the cluster
+emr_master_instance_count: 1 # the number of master nodes to launch
+emr_slave_instance_count: 2 # the number of slave (core) nodes to launch
+emr_master_node_instance_type: m3.xlarge
+emr_slave_node_instance_type: m3.xlarge
+emr_subnet_id:
+emr_master_security_group_id:
+emr_slave_security_group_id:
+emr_service_access_security_group_id:
+emr_use_spot_instances: True # True/False for whether spot instances should be used instead of on-demand
+emr_spot_instance_bid_price: 0.05 # If emr_use_spot_instances is True, the bid price to use (ex: 0.05)
